@@ -1,0 +1,18 @@
+[
+    {
+    "overview_url": "https://www.atomicexplorer.com/api/explorer/overview",
+    "dexstats_explorers_url": "https://dexstats.info/api/explorerstatus.php",
+    "summary_url": "https://www.atomicexplorer.com/api/explorer/summary",
+    "all_addresses_url": "https://dexstats.info/api/assetviewer.php?address",
+    "all_addresses_url_backup": "https://www.atomicexplorer.com/api/explorer/search?term",
+    "address_info_url": "https://{0}.explorer.dexstats.info/insight-api-komodo/addr/{1}",
+    "rewards_info_url": "https://dexstats.info/api/rewards.php?address",
+    "rewards_info_url_backup": "https://www.atomicexplorer.com/api/kmd/rewards?address",
+    "supply_url": "https://www.atomicexplorer.com/api/explorer/supply",
+    "ticker_24hr_url": "https://dexapi.cipig.net/public/ticker_24h.php",
+    "trades_24hr_url": "https://dexapi.cipig.net/public/trades_24h.php?market",
+    "total_supply_url": "https://api1.barterdexapi.net/supply.php?coin",
+    "prices_url": "https://www.atomicexplorer.com/api/mm/prices/v2?coins",
+    "publish_tx_url": "https://komodod.com/tools/publishtx",
+    }
+]
