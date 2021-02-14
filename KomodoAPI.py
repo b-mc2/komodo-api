@@ -50,7 +50,7 @@ class KomodoAPI:
         except:
             print(f'error, {url_repo} gave an unknown error')
 
-    def RequestData(self, URL):
+    def RequestData(self, URL) -> dict:
         response = requests.get(URL)
         if response.status_code == 200:
             data = response.json()
@@ -58,29 +58,29 @@ class KomodoAPI:
         else:
             return {'msg': 'error', 'error_msg': f"error, status code {response.status_code}"}
 
-    def Summary(self):
+    def Summary(self) -> dict:
         data = self.RequestData(self.summary_url)
         return data
 
-    def Overview(self):
+    def Overview(self) -> dict:
         data = self.RequestData(self.overview_url)
         return data
 
-    def DexstatsExplorers(self):
+    def DexstatsExplorers(self) -> dict:
         data = self.RequestData(self.dexstats_explorers_url)
         return data
 
-    def AddressInfo(self, address:str, coin: str='KMD'):
+    def AddressInfo(self, address:str, coin: str='KMD') -> dict:
         built_address_info_url = self.address_info_url.format(coin, address)
         data = self.RequestData(built_address_info_url)
         return data
 
-    def CoinSupply(self, coin: str):
+    def CoinSupply(self, coin: str) -> dict:
         built_supply_url = self.total_supply_url.format(coin)
         data = self.RequestData(built_supply_url)
         return data
 
-    def TickerInfo(self, coin_pair: str=None):
+    def TickerInfo(self, coin_pair: str=None) -> dict:
         if coin_pair:
             built_ticker_url = self.ticker_24hr_url + f"?market={coin_pair}"
             data = self.RequestData(built_ticker_url)
@@ -89,12 +89,12 @@ class KomodoAPI:
             data = self.RequestData(self.ticker_24hr_url)
             return data
 
-    def TradeInfo(self, coin_pair: str):
+    def TradeInfo(self, coin_pair: str) -> dict:
         built_trade_url = self.trades_24hr_url.format(coin_pair)
         data = self.RequestData(built_trade_url)
         return data
 
-    def AllAddresses(self, address: str, backup:bool=False):
+    def AllAddresses(self, address: str, backup:bool=False) -> dict:
         if backup:
             built_address_url = self.all_addresses_url_backup.format(address)
         else:
@@ -102,7 +102,7 @@ class KomodoAPI:
         data = self.RequestData(built_address_url)
         return data
 
-    def RewardsInfo(self, address: str, backup:bool=False):
+    def RewardsInfo(self, address: str, backup:bool=False) -> dict:
         if backup:
             built_rewards_url = self.rewards_info_url_backup.format(address)
         else:
@@ -110,14 +110,14 @@ class KomodoAPI:
         data = self.RequestData(built_rewards_url)
         return data
 
-    def PriceInfo(self, coin: List[str], currency: str='all', price_change: bool=True):
+    def PriceInfo(self, coin: List[str], currency: str='all', price_change: bool=True) -> dict:
         coin_list = ",".join(coin)
         price_change_selection = price_change or ""
         built_prices_url = self.prices_url.format(coin_list, currency, price_change_selection)
         data = self.RequestData(built_prices_url)
         return data
 
-    def PublishTX(self, hex: str):
+    def PublishTX(self, hex: str) -> dict:
         package = f'{{"hexrw": "{hex}"}}'
         response = requests.post(self.publish_tx_url, data=package)
         if response.status_code == 200:
